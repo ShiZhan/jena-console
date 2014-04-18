@@ -12,7 +12,7 @@ set FSC_ROOT=%~dp0
 @REM set FSC_DATA=r:/data
 set LIB=%FSC_ROOT%target\scala-2.10\lib\
 for /f %%i in ('dir /b %LIB%') do call :concat %%i
-scala -cp "%CP%;%FSC_ROOT%target/scala-2.10/jenaconsole_2.10-1.0.jar" JenaConsole %1 %2 %3 %4 %5 %6 %7 %8 %9
+java -cp "%CP%;%FSC_ROOT%target/scala-2.10/jenaconsole_2.10-1.0.jar" JenaConsole %1 %2 %3 %4 %5 %6 %7 %8 %9
 endlocal
 goto :eof
 

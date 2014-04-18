@@ -18,4 +18,4 @@ if $cygwin; then
   TGM_ROOT=`cygpath -alm $JC_ROOT`
 fi
 
-scala -J-Xmx2g -cp "$CP" JenaConsole "$@" 
+java -Xmx2g -cp "$CP" JenaConsole "$@" 
