@@ -36,6 +36,8 @@ How to use
     * use `JenaConsoletrigram -u <SPARQL update>` for update.
     * or enter command shell, and use query or update command to input SPARQL scripts.
 
+[download](http://goo.gl/ZGDskR)
+
 Command line interface
 ----------------------
 
