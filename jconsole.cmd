@@ -1,8 +1,7 @@
 @REM launcher script
 @REM Shi.Zhan @ 2013
-@REM use 'sbt copy-dep' to collect dependencies in "target\scala-2.10\lib"
-@REM load compiled classes from "target\scala-2.10" directly for development
-@REM if deploy with individual "jar" libs, update "set LIB" to lib directory.
+@REM use 'sbt copyDep' to collect dependencies in "target\scala-2.10\lib"
+@REM load packaged JAR from "target\scala-2.10\jenaconsole_2.10-1.0.jar"
 @echo off
 setlocal
 
