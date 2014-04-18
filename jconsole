@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+cygwin=false
+
+case "`uname`" in
+  CYGWIN*) cygwin=true;;
+  Darwin) darwin=true;;
+esac
+
+export JC_ROOT=$(dirname `which $0`)
+# export JC_DATA=$JC_ROOT/.data
+LIB=$JC_ROOT/target/scala-2.10/lib/
+CP=`ls -1 $LIB | awk -v lib=$LIB 'BEGIN { FS = "*" }; {printf lib$1":"}'`
+CP=$CP$JC_ROOT/target/scala-2.10/classes
+
+if $cygwin; then
+  CP=`cygpath -alpm $CP`
+  TGM_ROOT=`cygpath -alm $JC_ROOT`
+fi
+
+scala -J-Xmx2g -cp "$CP" JenaConsole "$@" 
