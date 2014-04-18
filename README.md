@@ -13,22 +13,18 @@ How to use
 
     * deploy [sbt](https://github.com/harrah/xsbt/wiki), which is required by
       most scala and java projects.
-
     * open sbt console in project root directory, run `update` to update
       project dependencies.
-
     * run sbt `assembly`. This task is based on [sbt assembly](https://github.com/sbt/sbt-assembly).
 
 2.  Run main program
 
     * use `java -jar target\scala-2.10\JenaConsole-assembly-1.0.jar` to enter console
-
     * use `java -jar target\scala-2.10\JenaConsole-assembly-1.0.jar -h` to get command line help
 
 3.  Model combining and importing
 
     * `JenaConsole -c <models>`, to generate a combined model
-
     * `JenaConsole -i <models>`, to importing them into the same repository.
 
     TDB database location is defined in 'JC_DATA' and defaults to
@@ -37,28 +33,19 @@ How to use
 4.  SPARQL execution
 
     * use `JenaConsoletrigram -q <SPARQL query>` for query.
-
     * use `JenaConsoletrigram -u <SPARQL update>` for update.
-
     * or enter command shell, and use query or update command to input SPARQL scripts.
 
 Command line interface
 ----------------------
 
     0. default entry: enter console
-
     1. '-h' show help
-
     2. '-v' show version
-
     3. '-i' import specified model into local triple storage
-
     4. '-q' execute SPARQL query
-
     5. '-u' execute SPARQL update
-
     6. '-c' combine multiple models
-
     7. '-R' do rule-based reasoning on given model
 
 Alternatives
