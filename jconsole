@@ -11,7 +11,7 @@ export JC_ROOT=$(dirname `which $0`)
 # export JC_DATA=$JC_ROOT/.data
 LIB=$JC_ROOT/target/scala-2.10/lib/
 CP=`ls -1 $LIB | awk -v lib=$LIB 'BEGIN { FS = "*" }; {printf lib$1":"}'`
-CP=$CP$JC_ROOT/target/scala-2.10/classes
+CP=$CP$JC_ROOT/target/scala-2.10/jenaconsole_2.10-1.0.jar
 
 if $cygwin; then
   CP=`cygpath -alpm $CP`
