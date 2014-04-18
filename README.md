@@ -41,14 +41,14 @@ How to use
 Command line interface
 ----------------------
 
-    0. default entry: enter console
-    1. '-h' show help
-    2. '-v' show version
-    3. '-i' import specified model into local triple storage
-    4. '-q' execute SPARQL query
-    5. '-u' execute SPARQL update
-    6. '-c' combine multiple models
-    7. '-R' do rule-based reasoning on given model
+0. default entry: enter console
+1. '-h' show help
+2. '-v' show version
+3. '-i' import specified model into local triple storage
+4. '-q' execute SPARQL query
+5. '-u' execute SPARQL update
+6. '-c' combine multiple models
+7. '-R' do rule-based reasoning on given model
 
 Alternatives
 ------------
