@@ -6,8 +6,8 @@ package helper
 /**
  * @author ShiZhan
  * configuration information
- * JCROOT: TriGraM program root
- * JCDATA: TriGraM program data
+ * JCROOT: program root
+ * JCDATA: program data
  *
  * NOTE:
  * if above variables are not defined/exported, current directory will be used.

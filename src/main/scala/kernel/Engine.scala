@@ -5,7 +5,7 @@ package kernel
 
 /**
  * @author ShiZhan
- * TriGraM engine
+ * Program engine
  */
 object Engine {
   import helper.Config.{ JCROOT, JCDATA }

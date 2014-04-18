@@ -3,7 +3,7 @@
  * @year 2014
  * @name JenaConsole Project
  */
-object Trigram {
+object JenaConsole {
   import kernel.{ Console, Engine }
 
   val usage = """usage: JenaConsole
