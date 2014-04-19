@@ -1,5 +1,5 @@
 /**
- * TriGraM engine
+ * Jena Console engine
  */
 package kernel
 
@@ -16,7 +16,7 @@ object Engine {
 
   private val JCVER = Version.get
   val status = s"""
-TriGraM:     $JCVER
+Jena Console:$JCVER
   code:      $JCROOT
   data:      $JCDATA""" + Platform.BRIEFING
 
