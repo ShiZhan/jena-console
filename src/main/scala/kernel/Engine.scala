@@ -9,7 +9,7 @@ package kernel
  */
 object Engine {
   import helper.Config.{ JCROOT, JCDATA }
-  import helper.{ GetString, Platform, Version }
+  import helper.{ GetString, Platform, Shell, Version }
   import common.ModelEx._
   import common.Gauge.timedOp
   import Infer._
@@ -89,4 +89,9 @@ Jena Console:$JCVER
 
   def combine(files: List[String]) =
     files.asModels.join.store(files.head + "-combined.n3", "N3")
+
+  def runShell(cArgs: List[String]) = {
+    try { Shell.run(cArgs.mkString(" ")).foreach(println) }
+    catch { case e: Exception => println(e) }
+  }
 }

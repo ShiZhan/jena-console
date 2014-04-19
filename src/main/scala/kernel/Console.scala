@@ -11,12 +11,17 @@ object Console {
   import Engine._
 
   private val usage = """ [Console Usage]
-  help       print this message
-  status     show program status
-  time       show current time
-  query      enter SPARQL/read SPARQL file to do query
-  update     enter SPARQL/read SPARQL file to do update
-  exit       exit console"""
+  help        print this message
+  status      show program status
+  time        show current time
+  query       enter SPARQL/read SPARQL file to do query
+  update      enter SPARQL/read SPARQL file to do update
+  tdbinfo     Jena tdbinfo utility
+  tdbloader   Jena tdbloader utility
+  tdbquery    Jena tdbquery utility
+  tdbupdate   Jena tdbupdate utility
+  ! <command> run shell command
+  exit        exit console"""
   private val title = "TriGraM Console"
   private val prompt = "# "
 
@@ -29,12 +34,13 @@ object Console {
         case "help" :: Nil => println(usage)
         case "status" :: Nil => println(status)
         case "time" :: Nil => println(helper.DateTime.get)
+        case "query" :: qArgs => doQuery(qArgs)
+        case "update" :: uArgs => doUpdate(uArgs)
         case "tdbinfo" :: Nil => tdbinfo
         case "tdbloader" :: modelFile :: Nil => tdbloader(modelFile)
         case "tdbquery" :: sparqlFile :: Nil => tdbquery(sparqlFile)
         case "tdbupdate" :: sparqlFile :: Nil => tdbupdate(sparqlFile)
-        case "query" :: qArgs => doQuery(qArgs)
-        case "update" :: uArgs => doUpdate(uArgs)
+        case "!" :: cArgs => runShell(cArgs)
         case "" :: Nil =>
         case _ => println(s"Unrecognized command: [$line]")
       }
