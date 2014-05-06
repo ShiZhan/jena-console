@@ -10,8 +10,9 @@ package kernel
 object Engine {
   import helper.Config.{ JCROOT, JCDATA }
   import helper.{ GetString, Platform, Shell, Version }
+  import common.FileEx._
   import common.ModelEx._
-  import common.Timing.timedOp
+  import common.Timing._
   import Infer._
 
   private val JCVER = Version.get
@@ -46,7 +47,7 @@ Jena Console:$JCVER
 
   def timedQuery(sparql: String) = if ("" != sparql) {
     try {
-      val (result, t) = timedOp { () => store.queryAny(sparql) }
+      val (result, t) = { () => store.queryAny(sparql) }.runWithTimer
       println(result)
       println("Query executed in %d milliseconds".format(t))
     } catch {
@@ -60,7 +61,7 @@ Jena Console:$JCVER
 
   def timedUpdate(sparql: String) = {
     try {
-      val (result, t) = timedOp { () => store.update(sparql) }
+      val (result, t) = { () => store.update(sparql) }.runWithTimer
       println("Update Executed in %d milliseconds".format(t))
     } catch {
       case e: Exception => e.printStackTrace
@@ -73,18 +74,17 @@ Jena Console:$JCVER
 
   def infer(modelFN: String, ruleFNs: List[String]) = {
     val data = load(modelFN)
-    def output(suffix: String) = s"$modelFN-$suffix.n3"
-    if (Nil == ruleFNs) {
-      data.infer(defaultRules).validateAndSave(output("deduction"), "N3")
-    } else {
+    if (Nil == ruleFNs)
+      data.infer(defaultRules).validateAndSave(modelFN + "-infered.n3", "N3")
+    else
       (data /: ruleFNs) { (baseModel, ruleFN) =>
         val rules = parseRules(ruleFN)
-        val (result, t) = timedOp { () => baseModel.infer(rules) }
-        println("Inferring Executed in %d milliseconds".format(t))
-        result.validateAndSave(output(new java.io.File(ruleFN).getName), "N3")
+        val ruleName = ruleFN.toFile.getName
+        val (result, t) = { () => baseModel.infer(rules) }.runWithTimer
+        println("[%s] Infered in %d milliseconds".format(ruleName, t))
+        result.validateAndSave(modelFN + "-" + ruleName + ".n3", "N3")
         baseModel union result.getDeductionsModel
-      } store (output("final"), "N3")
-    }
+      } store(modelFN + "-infered.n3", "N3")
   }
 
   def combine(files: List[String]) =

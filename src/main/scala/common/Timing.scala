@@ -1,18 +1,19 @@
 /**
- * Gauge operations with console feedback
+ * Timer
  */
 package common
 
 /**
  * @author ShiZhan
- * Gauge operations with console feedback
- * E.g.: to process a large amount of files
+ * Timer
  */
 object Timing {
-  def timedOp[T](op: () => T) = {
-    val t1 = compat.Platform.currentTime
-    val result = op()
-    val t2 = compat.Platform.currentTime
-    (result, t2 - t1)
+  implicit class TimerWrapper[T](op: () => T) {
+    def runWithTimer = {
+      val t1 = compat.Platform.currentTime
+      val result = op()
+      val t2 = compat.Platform.currentTime
+      (result, t2 - t1)
+    }
   }
 }
