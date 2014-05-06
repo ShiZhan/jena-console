@@ -84,7 +84,7 @@ Jena Console:$JCVER
         println("[%s] Infered in %d milliseconds".format(ruleName, t))
         result.validateAndSave(modelFN + "-" + ruleName + ".n3", "N3")
         baseModel union result.getDeductionsModel
-      } store(modelFN + "-infered.n3", "N3")
+      } store(modelFN + "-final.n3", "N3")
   }
 
   def combine(files: List[String]) =
