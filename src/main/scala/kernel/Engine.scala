@@ -11,7 +11,7 @@ object Engine {
   import helper.Config.{ JCROOT, JCDATA }
   import helper.{ GetString, Platform, Shell, Version }
   import common.ModelEx._
-  import common.Gauge.timedOp
+  import common.Timing.timedOp
   import Infer._
 
   private val JCVER = Version.get
