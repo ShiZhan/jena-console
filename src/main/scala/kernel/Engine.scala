@@ -78,9 +78,9 @@ Jena Console:$JCVER
       data.infer(defaultRules).validateAndSave(modelFN + "-infered.n3", "N3")
     else
       (data /: ruleFNs) { (baseModel, ruleFN) =>
-        val rules = parseRules(ruleFN)
+        val ruleList = ruleFN.toRuleList
         val ruleName = ruleFN.toFile.getName
-        val (result, t) = { () => baseModel.infer(rules) }.runWithTimer
+        val (result, t) = { () => baseModel.infer(ruleList) }.runWithTimer
         println("[%s] Infered in %d milliseconds".format(ruleName, t))
         result.validateAndSave(modelFN + "-" + ruleName + ".n3", "N3")
         baseModel union result.getDeductionsModel

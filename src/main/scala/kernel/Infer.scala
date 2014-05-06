@@ -13,20 +13,21 @@ object Infer extends helper.Logging {
   import com.hp.hpl.jena.reasoner.ReasonerRegistry
   import com.hp.hpl.jena.reasoner.rulesys.{ GenericRuleReasoner, Rule }
   import common.ModelEx._
-  import helper.BuildIn
 
   val rEmpty = Rule.parseRules("")
 
-  val defaultRules = Rule.parseRules(BuildIn.getString("rules/rdfs.rules"))
+  val defaultRules = Rule.parseRules(helper.BuildIn.getString("rules/rdfs.rules"))
 
-  def parseRules(ruleFN: String) =
-    try {
-      Rule.rulesFromURL(ruleFN)
-    } catch {
-      case e: Exception => logger.error(e.toString); rEmpty
-    }
+  implicit class RuleFileName(ruleFileName: String) {
+    def toRuleList =
+      try {
+        Rule.rulesFromURL(ruleFileName)
+      } catch {
+        case e: Exception => logger.error(e.toString); rEmpty
+      }
+  }
 
-  implicit class InferAsOntology(m: Model) {
+  implicit class InferOnModel(m: Model) {
     def infer(rules: java.util.List[Rule]) =
       ModelFactory.createInfModel(new GenericRuleReasoner(rules), m)
   }
