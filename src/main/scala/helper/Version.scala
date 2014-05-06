@@ -10,5 +10,5 @@ package helper
 object Version {
   def get =
     try { BuildIn.getString("master").trim }
-    catch { case e: Exception => "internal version" }
+    catch { case e: Exception => "version info inaccessible" }
 }
