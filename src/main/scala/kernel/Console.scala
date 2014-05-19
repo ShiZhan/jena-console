@@ -22,7 +22,7 @@ object Console {
   tdbupdate   Jena tdbupdate utility
   ! <command> run shell command
   exit        exit console"""
-  private val title = "TriGraM Console"
+  private val title = "Input Jena command here ..."
   private val prompt = "# "
 
   def run: Unit = {

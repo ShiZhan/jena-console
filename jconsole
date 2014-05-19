@@ -15,7 +15,7 @@ CP=$CP$JC_ROOT/target/scala-2.10/jenaconsole_2.10-1.0.jar
 
 if $cygwin; then
   CP=`cygpath -alpm $CP`
-  TGM_ROOT=`cygpath -alm $JC_ROOT`
+  JC_ROOT=`cygpath -alm $JC_ROOT`
 fi
 
 java -Xmx2g -cp "$CP" JenaConsole "$@" 
