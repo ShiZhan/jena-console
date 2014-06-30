@@ -2,7 +2,7 @@ name := "JenaConsole"
 
 version := "1.0"
 
-scalaVersion := "2.10.3"
+scalaVersion := Option(System.getProperty("scala.version")).getOrElse("2.10.4")
 
 libraryDependencies ++= Seq(
  "org.apache.jena" % "jena-core" % "2.11.1" excludeAll(ExclusionRule(organization = "org.slf4j")), 

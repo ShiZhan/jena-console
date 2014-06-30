@@ -16,7 +16,7 @@ object Infer extends helper.Logging {
 
   val rEmpty = Rule.parseRules("")
 
-  val defaultRules = Rule.parseRules(helper.BuildIn.getString("rules/rdfs.rules"))
+  val defaultRules = Rule.parseRules(helper.Resource.getString("rules/rdfs.rules"))
 
   implicit class RuleFileName(ruleFileName: String) {
     def toRuleList =

@@ -9,6 +9,6 @@ package helper
  */
 object Version {
   def get =
-    try { BuildIn.getString("master").trim }
+    try { Resource.getString("master").trim }
     catch { case e: Exception => "version info inaccessible" }
 }

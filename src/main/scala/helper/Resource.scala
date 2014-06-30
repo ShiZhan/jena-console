@@ -7,7 +7,7 @@ package helper
  * @author ShiZhan
  * API for getting build-in resources
  */
-object BuildIn extends Logging {
+object Resource extends Logging {
   def getInputStream(name: String) =
     getClass.getClassLoader.getResourceAsStream(name)
 
