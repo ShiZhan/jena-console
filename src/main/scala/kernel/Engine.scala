@@ -9,7 +9,7 @@ package kernel
  */
 object Engine {
   import helper.Config.{ JCROOT, JCDATA }
-  import helper.{ GetString, Platform, Shell, Version }
+  import helper.{ GetString, Platform, Version }
   import common.FileEx._
   import common.ModelEx._
   import common.Timing._
@@ -84,14 +84,14 @@ Jena Console:$JCVER
         println("[%s] Infered in %d milliseconds".format(ruleName, t))
         result.validateAndSave(modelFN + "-" + ruleName + ".n3", "N3")
         baseModel union result.getDeductionsModel
-      } store(modelFN + "-final.n3", "N3")
+      } store (modelFN + "-final.n3", "N3")
   }
 
   def combine(files: List[String]) =
     files.asModels.join.store(files.head + "-combined.n3", "N3")
 
   def runShell(cArgs: List[String]) = {
-    try { Shell.run(cArgs.mkString(" ")).foreach(println) }
-    catch { case e: Exception => println(e) }
+    import sys.process._
+    cArgs.toSeq.lines_!.foreach(println)
   }
 }
