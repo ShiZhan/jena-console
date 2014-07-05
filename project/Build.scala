@@ -5,7 +5,7 @@ object MyBuild extends Build {
   lazy val buildSettings = Defaults.defaultSettings ++ Seq(
     version := "0.1-SNAPSHOT",
     organization := "com.simba",
-    scalaVersion := "2.10.3"
+    scalaVersion := Option(System.getProperty("scala.version")).getOrElse("2.10.4")
   )
 
   lazy val copyDependencies = TaskKey[Unit]("copyDep")
