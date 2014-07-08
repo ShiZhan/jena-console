@@ -65,7 +65,7 @@ object ModelEx extends helper.Logging {
   }
 
   implicit class ModelSeqOps(models: Seq[Model]) {
-    def join = (createDefaultModel /: models) { (r, m) => r union m }
-    def join(baseModel: Model) = (baseModel /: models) { (r, m) => r union m }
+    def join = models.reduceLeft(_ union _)
+    def join(baseModel: Model) = (baseModel /: models) { _ union _ }
   }
 }
