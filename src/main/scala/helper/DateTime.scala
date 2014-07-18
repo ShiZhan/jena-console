@@ -14,7 +14,7 @@ object DateTime {
   import com.hp.hpl.jena.datatypes.xsd.XSDDateTime
 
   private def _c = Calendar.getInstance
-  private def _x = (c: Calendar) => new XSDDateTime(c) toString
+  private def _x = (c: Calendar) => new XSDDateTime(c).toString
 
   def get = { val c = _c; _x(c) }
   def get(d: Date) = { val c = _c; c.setTime(d); _x(c) }
