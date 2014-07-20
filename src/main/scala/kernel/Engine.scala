@@ -45,7 +45,7 @@ Jena Console:$JCVER
 
   def shutdown = store.close
 
-  def timedQuery(sparql: String) = if ("" != sparql) {
+  def timedQuery(sparql: String) = if (!sparql.isEmpty) {
     try {
       val (result, t) = { () => store.queryAny(sparql) }.runWithTimer
       println(result)
@@ -57,9 +57,9 @@ Jena Console:$JCVER
   def doQueryFromConsole = timedQuery(GetString.fromConsole)
   def doQueryFromFile(fileName: String) = timedQuery(GetString.fromFile(fileName))
   def doQuery(qArgs: List[String]) =
-    if (Nil == qArgs) doQueryFromConsole else qArgs.foreach(doQueryFromFile)
+    if (qArgs.isEmpty) doQueryFromConsole else qArgs.foreach(doQueryFromFile)
 
-  def timedUpdate(sparql: String) = {
+  def timedUpdate(sparql: String) = if (!sparql.isEmpty) {
     try {
       val (result, t) = { () => store.update(sparql) }.runWithTimer
       println("Update Executed in %d milliseconds".format(t))
@@ -74,7 +74,7 @@ Jena Console:$JCVER
 
   def infer(modelFN: String, ruleFNs: List[String]) = {
     val data = load(modelFN)
-    if (Nil == ruleFNs)
+    if (ruleFNs.isEmpty)
       data.infer(defaultRules).validateAndSave(modelFN + "-infered.n3", "N3")
     else
       (data /: ruleFNs) { (baseModel, ruleFN) =>
@@ -88,10 +88,6 @@ Jena Console:$JCVER
   }
 
   def combine(files: List[String]) =
-    files.asModels.join.store(files.head + "-combined.n3", "N3")
-
-  def runShell(cArgs: List[String]) = {
-    import sys.process._
-    cArgs.toSeq.lines_!.foreach(println)
-  }
+    if (files.length > 1)
+      files.asModels.join.store(files.head + "-combined.n3", "N3")
 }

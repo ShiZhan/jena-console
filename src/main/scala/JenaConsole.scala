@@ -3,7 +3,7 @@
  * @year 2014
  * @name JenaConsole Project
  */
-object JenaConsole {
+object JenaConsole extends App {
   import kernel.{ Console, Engine }
 
   val usage = """usage: JenaConsole
@@ -17,18 +17,16 @@ object JenaConsole {
  -R [MODEL] <Rules ...>    Infer over [MODEL] using <Rules ...>"""
   val incorrectArgs = "Incorrect parameters, see help (JenaConsole -h)."
 
-  def main(args: Array[String]) = {
-    println("Portable Jena Console")
-    args.toList match {
-      case Nil => Console.run
-      case "-h" :: Nil => println(usage)
-      case "-v" :: Nil => println(helper.Version.get)
-      case "-i" :: modelFNs => modelFNs.foreach(Engine.tdbloader)
-      case "-c" :: modelFNs => if (modelFNs.length > 1) Engine.combine(modelFNs)
-      case "-q" :: qArgs => Engine.doQuery(qArgs)
-      case "-u" :: uArgs => Engine.doUpdate(uArgs)
-      case "-R" :: modelFN :: ruleFNs => Engine.infer(modelFN, ruleFNs)
-      case _ => println(incorrectArgs)
-    }
+  println("Portable Jena Console")
+  args.toList match {
+    case Nil => Console.run
+    case "-h" :: Nil => println(usage)
+    case "-v" :: Nil => println(helper.Version.get)
+    case "-i" :: fileNames => fileNames.foreach(Engine.tdbloader)
+    case "-c" :: fileNames => Engine.combine(fileNames)
+    case "-q" :: arguments => Engine.doQuery(arguments)
+    case "-u" :: arguments => Engine.doUpdate(arguments)
+    case "-R" :: model :: rules => Engine.infer(model, rules)
+    case _ => println(incorrectArgs)
   }
 }

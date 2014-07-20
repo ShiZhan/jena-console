@@ -40,7 +40,9 @@ object Console {
         case "tdbloader" :: modelFile :: Nil => tdbloader(modelFile)
         case "tdbquery" :: sparqlFile :: Nil => tdbquery(sparqlFile)
         case "tdbupdate" :: sparqlFile :: Nil => tdbupdate(sparqlFile)
-        case "!" :: cArgs => runShell(cArgs)
+        case "!" :: cArgs =>
+          import sys.process._
+          cArgs.toSeq.lines_!.foreach(println)
         case "" :: Nil =>
         case _ => println(s"Unrecognized command: [$line]")
       }
