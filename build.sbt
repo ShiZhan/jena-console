@@ -2,7 +2,7 @@ name := "JenaConsole"
 
 version := "1.0"
 
-scalaVersion := Option(System.getProperty("scala.version")).getOrElse("2.10.4")
+scalaVersion := Option(System.getProperty("scala.version")).getOrElse("2.11.2")
 
 libraryDependencies ++= {
   val jenaV  = "2.12.0"
