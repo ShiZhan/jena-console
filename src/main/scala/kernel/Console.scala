@@ -42,7 +42,7 @@ object Console {
         case "tdbupdate" :: sparqlFile :: Nil => tdbupdate(sparqlFile)
         case "!" :: cArgs =>
           import sys.process._
-          cArgs.toSeq.lines_!.foreach(println)
+          cArgs.toSeq.lineStream_!.foreach(println)
         case "" :: Nil =>
         case _ => println(s"Unrecognized command: [$line]")
       }
