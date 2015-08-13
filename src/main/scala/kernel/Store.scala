@@ -27,7 +27,7 @@ import com.hp.hpl.jena.update.{
 class Store(location: String) {
   private val store = TDBFactory.createDataset(location)
 
-  def close = store.close()
+  def close() = store.close()
 
   def querySelect(sparql: String) = {
     val query = QueryFactory.create(sparql)

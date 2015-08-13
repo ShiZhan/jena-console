@@ -25,7 +25,7 @@ object Console {
   private val title = "Input Jena command here ..."
   private val prompt = "# "
 
-  def run: Unit = {
+  def run(): Unit = {
     println(title)
     print(prompt)
     for (line <- io.Source.stdin.getLines) {

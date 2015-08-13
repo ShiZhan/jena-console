@@ -25,7 +25,7 @@ Jena Console:$JCVER
     try { tdb.tdbloader.main("--loc=" + JCDATA, modelFile) }
     catch { case e: Exception => println(e) }
 
-  def tdbinfo =
+  def tdbinfo() =
     try { tdb.tdbstats.main("--loc=" + JCDATA) }
     catch { case e: Exception => println(e) }
 
@@ -43,7 +43,7 @@ Jena Console:$JCVER
 
   private val store = new Store(JCDATA)
 
-  def shutdown = store.close
+  def shutdown() = store.close
 
   def timedQuery(sparql: String) = if (!sparql.isEmpty) {
     try {
@@ -54,7 +54,7 @@ Jena Console:$JCVER
       case e: Exception => e.printStackTrace
     }
   }
-  def doQueryFromConsole = timedQuery(GetString.fromConsole)
+  def doQueryFromConsole() = timedQuery(GetString.fromConsole)
   def doQueryFromFile(fileName: String) = timedQuery(GetString.fromFile(fileName))
   def doQuery(qArgs: List[String]) =
     if (qArgs.isEmpty) doQueryFromConsole else qArgs.foreach(doQueryFromFile)
@@ -67,7 +67,7 @@ Jena Console:$JCVER
       case e: Exception => e.printStackTrace
     }
   }
-  def doUpdateFromConsole = timedUpdate(GetString.fromConsole)
+  def doUpdateFromConsole() = timedUpdate(GetString.fromConsole)
   def doUpdateFromFile(fileName: String) = timedUpdate(GetString.fromFile(fileName))
   def doUpdate(uArgs: List[String]) =
     if (Nil == uArgs) doUpdateFromConsole else uArgs.foreach(doUpdateFromFile)
