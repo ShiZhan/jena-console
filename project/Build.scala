@@ -43,10 +43,7 @@ object MyBuild extends Build {
   lazy val JenaConsole = Project(
     id = "JenaConsole",
     base = file("."),
-    settings = commonSettings ++
-    sbtassembly.Plugin.assemblySettings ++
-    Seq(
-      copyDepTask,
+    settings = commonSettings ++ assemblySettings ++ copyDepTask ++ Seq(
       logLevel in assembly := Level.Warn
     )
   )
